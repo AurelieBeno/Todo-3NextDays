@@ -116,7 +116,7 @@ export class Header extends Component {
                   name="search"
                   onChange={this.handleSearch}
                   className="search_input"
-                  placeholder="search"
+                  placeholder="Type to search"
                 />
               </div>
             </form>

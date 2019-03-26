@@ -228,39 +228,40 @@ class Textbox extends React.Component {
 
   render() {
     return (
-      <div className="textbox container">
-        <form onSubmit={this.handleSubmit} className="form">
-          <div className="form-group form-warning">
-            <center>
+      <div className="Container">
+        <form onSubmit={this.handleSubmit} className="formContainer">
+          <div className="GoalContainer">
+            <center className="GoalLabel">
               <label>FOR</label>
             </center>
             <select
               value={this.state.day}
               id="day"
               onChange={this.handleSelect}
-              className="form-control"
+              className="GoalSelect"
             >
               <option value="Today">Today</option>
               <option value="Tomorrow">Tomorrow</option>
               <option value="Day_After_Tomorrow">Day after Tomorrow</option>
             </select>
           </div>
-          <div className="form-group form-warning">
-            <center>
+          <div className="GoalContainer">
+            <center className="GoalLabel">
               <label>YOUR GOAL</label>
             </center>
             <input
               type="text"
               id="aim"
               value={this.state.term}
-              placeholder="type here and press enter"
+              placeholder=" Type here your goal"
               onChange={this.handleChange}
-              className="form-control"
+              className="GoalInput"
             />
           </div>
-          <div className="form-group">
-            <button className="btn btn-warning btn-ghost" id="iwilldothis">
-              I WILL DO THIS.
+
+          <div className="btnSubmit">
+            <button className="" id="iwilldothis">
+              I need to do this.
             </button>
           </div>
           <span>{this.state.err}</span>

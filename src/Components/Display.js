@@ -1,4 +1,5 @@
 import React from "react";
+import "./cssComponents/Display.css";
 
 export class DisplayToday extends React.Component {
   constructor(props) {
@@ -33,13 +34,13 @@ export class DisplayToday extends React.Component {
   }
   render() {
     return (
-      <div className="cell">
+      <div className="cell cellContainer">
         <div className="boxx boxx1">
           <div className="alert">
             Today
             <span className="time-left">
               {this.state.todayTimingLeftHrs} hr
-              {this.state.todayTimingLeftMins} Min left
+              {this.state.todayTimingLeftMins} Min
             </span>
           </div>
           {this.props.items.map((item, index) => {
@@ -48,11 +49,10 @@ export class DisplayToday extends React.Component {
                 <div className="cell">
                   <div className="cell content-title">
                     <div
-                      className="minus"
+                      className="minus deleteItem"
                       onClick={() => this.removeThis(index)}
                     >
-                      <div className="minusLine onearm" />
-                      <div className="minusLines secondarm" />
+                      <i class="fas fa-times" />
                     </div>
                     &nbsp;{item} &nbsp;
                   </div>
@@ -70,7 +70,8 @@ export class DisplayTomorrow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tomorrowTimingLeft: ""
+      tomorrowTimingLeft: "",
+      tomorrowTimingLeftMins: ""
     };
   }
 
@@ -87,8 +88,14 @@ export class DisplayTomorrow extends React.Component {
         (twoDay - (hoursSec + minuteSec)) / 3600
       );
 
+      var tomorrowTimingLeftMins = 60 - currentTime.getMinutes();
       this.setState({
-        tomorrowTimingLeft: tomorrowTimingLeft
+        tomorrowTimingLeftMins: tomorrowTimingLeftMins
+      });
+
+      this.setState({
+        tomorrowTimingLeft: tomorrowTimingLeft,
+        tomorrowTimingLeftMins: tomorrowTimingLeftMins
       });
     }, 1000);
   }
@@ -104,7 +111,8 @@ export class DisplayTomorrow extends React.Component {
           <div className="alert alert-success">
             Tomorrow
             <span className="time-left">
-              {this.state.tomorrowTimingLeft} hr left{" "}
+              {this.state.tomorrowTimingLeft} hr{" "}
+              {this.state.tomorrowTimingLeftMins} min
             </span>
           </div>
           {this.props.items.map((item, index) => {
@@ -113,11 +121,10 @@ export class DisplayTomorrow extends React.Component {
                 <div className="cell">
                   <div className="content-title">
                     <div
-                      className="minus"
+                      className="minus deleteItem"
                       onClick={() => this.removeThis(index)}
                     >
-                      <div className="minusLine onearm" />
-                      <div className="minusLines secondarm" />
+                      <i class="fas fa-times" />
                     </div>
                     &nbsp;{item}&nbsp;
                   </div>
@@ -134,7 +141,8 @@ export class DisplayDayAfterTomorrow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dayAfterTomorrowTimingLeft: ""
+      dayAfterTomorrowTimingLeft: "",
+      dayAfterTomorrowMinLeft: ""
     };
   }
 
@@ -150,9 +158,14 @@ export class DisplayDayAfterTomorrow extends React.Component {
       var dayAfterTomorrowTimingLeft = Math.floor(
         (threeDay - (hoursSec + minuteSec)) / 3600
       );
+      var dayAfterTomorrowMinLeft = 60 - currentTime.getMinutes();
+      this.setState({
+        dayAfterTomorrowMinLeft: dayAfterTomorrowMinLeft
+      });
 
       this.setState({
-        dayAfterTomorrowTimingLeft: dayAfterTomorrowTimingLeft
+        dayAfterTomorrowTimingLeft: dayAfterTomorrowTimingLeft,
+        dayAfterTomorrowMinLeft: dayAfterTomorrowMinLeft
       });
     }, 1000);
   }
@@ -165,10 +178,10 @@ export class DisplayDayAfterTomorrow extends React.Component {
       <div className="cell">
         <div className="boxx boxx3">
           <div className="alert alert-success">
-            Day after Tomorrow
+            After Tomorrow
             <span className="time-left">
-              {" "}
-              {this.state.dayAfterTomorrowTimingLeft} hr left
+              {this.state.dayAfterTomorrowTimingLeft} hr{" "}
+              {this.state.dayAfterTomorrowMinLeft} min
             </span>
           </div>
           {this.props.items.map((item, index) => {
@@ -177,11 +190,10 @@ export class DisplayDayAfterTomorrow extends React.Component {
                 <div className="cell">
                   <div className="content-title">
                     <div
-                      className="minus"
+                      className="minus deleteItem"
                       onClick={() => this.removeThis(index)}
                     >
-                      <div className="minusline onearm" />
-                      <div className="minuslinee secondarm" />
+                      <i class="fas fa-times" />
                     </div>
                     &nbsp;{item} &nbsp;
                   </div>

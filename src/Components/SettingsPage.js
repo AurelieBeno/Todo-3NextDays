@@ -67,18 +67,12 @@ export class SettingsPage extends React.Component {
             <h1> T H I S &nbsp; I S &nbsp; M A D E &nbsp; B Y </h1>
           </div>
           <div className="meker_info_content">
-            <h3>Mohit</h3>
+            <h3>Aurelie</h3>
             <p>you can find him here -</p>
             <h4>
               Github -{" "}
-              <a href="https://www.github.com/mohit23x">
-                www.github.com/mohit23x
-              </a>
-            </h4>
-            <h4>
-              instagram -{" "}
-              <a href="https://www.instagram.com/mohit23x">
-                www.instagram.com/mohit23x
+              <a href="https://www.github.com/aureliebeno">
+                www.github.com/aureliebeno
               </a>
             </h4>
           </div>

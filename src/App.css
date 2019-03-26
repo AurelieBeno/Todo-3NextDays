@@ -1,39 +1,5 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
 body {
-  background: #4162e6;
+  background: #071014;
   color: #fff;
   font-family: monospace;
 }
@@ -43,11 +9,7 @@ body {
   border-bottom: 2px dashed white;
   align-items: center;
 }
-.search {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
+
 .search span img {
   width: 100%;
   max-width: 50px;
@@ -59,8 +21,10 @@ body {
   font-size: 21px;
   border: none;
   color: white;
-  padding-left: 5px;
   text-align: center;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.7px;
 }
 .settings {
   border-left: 1px dashed #808080;
@@ -157,19 +121,16 @@ body {
 }
 .dull2 {
   color: white;
+  letter-spacing: 1.7px;
   font-weight: normal;
   font-size: 32px;
+  background-color: orange;
 }
 .salutation {
-  border: 2px dashed;
-  padding: 5px;
+  border: 1px solid;
   margin-right: 10px;
 }
-.salutation .name {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 2px;
-}
+
 .salutation .name span {
   height: 100%;
   color: #e7717d;
@@ -181,53 +142,78 @@ body {
 /* text box component */
 
 select {
-  padding: 10px;
-  background: transparent;
-  color: white;
+  padding: 3px;
+  background: white;
+  color: gray;
   border: 1px solid white;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: 1px;
 }
+.Container {
+  background-color: orange;
+  display: flex;
+}
+
+.formContainer {
+  background-color: violet;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 0;
+  justify-content: space-around;
+}
+
 form {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
 }
-.form-group {
-  margin-bottom: 15px;
-  align-self: center;
+
+.GoalSelect {
+  color: black;
 }
-.form-group input {
-  padding: 10px;
-  background: transparent;
-  color: white;
-  border: 1px solid white;
+
+.GoalLabel {
+  padding-bottom: 10px;
   font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 1px;
-  width: 400px;
+  font-size: 18px;
+  color: white;
+}
+::placeholder {
+  color: white;
+}
+
+.GoalInput {
+  width: 192px;
+  border-bottom-width: 2px;
+  padding: 4px;
   text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
-.form-group center {
-  margin-bottom: 13px;
-  margin-top: 20px;
+.GoalContainer ::placeholder {
+  color: black;
 }
-.form-group button {
+
+.btnSubmit {
+  padding-top: 32px;
+}
+.btnSubmit button {
   padding: 10px;
   background: transparent;
-  border: 3px solid white;
+  border: 2px solid white;
   color: white;
-  border-radius: 10%;
-  width: 300px;
+  border-radius: 3%;
+  width: 150px;
   letter-spacing: 1px;
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 15px;
 }
-.form-group button:hover,
-.form-group button:active,
-.form-group button:focus {
+button:hover,
+button:active,
+button:focus {
   border: 3px double white;
 }
 .textbox {
@@ -240,68 +226,16 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-.display_grid .cell {
-  min-width: 350px;
-}
-.listitems {
-  padding: 1px;
-  border-left: 0.5px dashed #2e2e2e;
-  border-right: 0.5px dashed #2e2e2e;
-  border-bottom: 0.5px dashed #2e2e2e;
-}
-.display_grid .boxx {
-  margin: 5px;
-  padding: 5px;
-}
-.alert {
-  padding: 10px;
-  border: 1px solid #616161;
-  color: #fff;
-  margin-bottom: 10px;
-  font-size: 27px;
-}
-
-.time-left {
-  float: right;
-  color: white;
-  font-size: 18px;
+  flex-wrap: nowrap;
   background-color: orange;
 }
-.minus {
-  display: inline-block;
-  cursor: pointer;
-  padding: 10px 8px;
-}
-.minusline {
-  display: inline-block;
-  height: 5px !important;
-  width: 20px !important;
-  background: red;
-  border: 0.5px solid black;
-  transition: 0.3s ease-in-out;
-}
-.minuslinee {
-  position: relative;
-  display: inline-block;
-  height: 5px !important;
-  width: 20px !important;
-  background: #45a29e;
-  border: 0.5px solid black;
-  margin-left: -20px;
-  transition: 0.3s ease-in-out;
-}
-.minus:hover .secondarm {
-  transform: rotate(-45deg);
-  background: red;
-}
-.minus:hover .onearm {
-  transform: rotate(45deg);
-}
+/* .display_grid .cell {
+  min-width: 350px;
+} */
+
 /* display ends */
 
-.settings_topbar {
+/* .settings_topbar {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -384,4 +318,4 @@ form {
   .form-group button {
     width: 50vw;
   }
-}
+} */

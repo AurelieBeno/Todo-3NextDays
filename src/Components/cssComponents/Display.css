@@ -1,0 +1,62 @@
+.deleteItem {
+  padding: 2px;
+  margin: 0 2px;
+  font-size: 12px;
+}
+.minus:hover {
+  transform: rotate(-45deg);
+  transition: 0.3s ease-in-out;
+  transform: rotate(45deg);
+  background: red;
+  cursor: pointer;
+}
+
+.content-title {
+  display: flex;
+  margin: 1px;
+  margin-bottom: 5px;
+}
+.listitems {
+  padding: 1px;
+  /* border-left: 0.5px dashed #2e2e2e;
+  border-right: 0.5px dashed #2e2e2e;
+  border-bottom: 0.5px dashed #2e2e2e; */
+  background-color: white;
+  color: #17394d;
+  font-size: 15px;
+  margin-bottom: 5px;
+  display: flex;
+}
+.display_grid .boxx {
+  margin: 5px;
+  padding: 5px;
+  background-color: #dfe3e6;
+}
+.boxx1,
+.boxx2,
+.boxx3 {
+  width: 280px;
+  margin-right: 10px;
+}
+.alert {
+  padding: 10px;
+  /* border: 1px solid #616161; */
+  color: #071014;
+  margin-bottom: 10px;
+  font-size: 27px;
+  font-weight: bold;
+  background-color: #dfe3e6;
+}
+.time-left {
+  color: #071014;
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+.display_grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  background-color: #071014;
+}
