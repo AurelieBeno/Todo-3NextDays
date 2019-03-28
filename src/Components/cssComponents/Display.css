@@ -1,12 +1,6 @@
-.deleteItem {
-  padding: 2px;
-  margin: 0 2px;
-  font-size: 12px;
-}
 .minus:hover {
   transform: rotate(-45deg);
   transition: 0.3s ease-in-out;
-  transform: rotate(45deg);
   background: red;
   cursor: pointer;
 }
@@ -17,14 +11,14 @@
   margin-bottom: 5px;
 }
 .listitems {
-  padding: 1px;
-  /* border-left: 0.5px dashed #2e2e2e;
-  border-right: 0.5px dashed #2e2e2e;
-  border-bottom: 0.5px dashed #2e2e2e; */
+  padding: 9px 3px;
   background-color: white;
   color: #17394d;
   font-size: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  height: 31px;
+  font-size: 19px;
+  letter-spacing: 0.6px;
   display: flex;
 }
 .display_grid .boxx {
@@ -53,10 +47,40 @@
   font-weight: bold;
   margin-left: 15px;
 }
+
+.cellContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 272px;
+}
+
+.content-title {
+  /* background-color: yellowgreen; */
+  font-size: 21px;
+  height: 100%;
+}
+.boxx1 {
+  background-color: black;
+}
+
+.deleteItem {
+  /* background-color: purple; */
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fa-times {
+  font-size: 20px;
+}
+
+.fa-times :hover {
+  transform: rotate(100deg);
+  transition: 0.3s ease-in-out;
+}
 .display_grid {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   flex-wrap: nowrap;
   background-color: #071014;
 }

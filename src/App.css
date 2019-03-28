@@ -8,6 +8,7 @@ body {
   justify-content: space-between;
   border-bottom: 2px dashed white;
   align-items: center;
+  height: 35px;
 }
 
 .search span img {
@@ -99,10 +100,19 @@ body {
 }
 .datetime {
   height: 100%;
+  /* background-color: blue; */
+  display: flex;
+  /* align-items: center; */
 }
 .dull {
   color: #c5c6c7;
   font-weight: normal;
+}
+.time_line,
+.date_line {
+  /* background-color: blue; */
+  display: flex;
+  align-items: center;
 }
 .date_line {
   margin-top: 3px;
@@ -112,19 +122,20 @@ body {
   font-weight: bold;
 }
 .time_line {
+  /* background-color: orange; */
   margin-top: 5px;
   color: white;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 1px;
-  padding-left: 29px;
 }
 .dull2 {
   color: white;
   letter-spacing: 1.7px;
   font-weight: normal;
-  font-size: 32px;
-  background-color: orange;
+  font-size: 17px;
+  font-weight: bold;
+  /* background-color: orange; */
 }
 .salutation {
   border: 1px solid;
@@ -156,7 +167,7 @@ select {
 }
 
 .formContainer {
-  background-color: violet;
+  background-color: white;
   width: 100%;
   flex-direction: row;
   align-items: center;
@@ -178,7 +189,7 @@ form {
   padding-bottom: 10px;
   font-weight: bold;
   font-size: 18px;
-  color: white;
+  color: black;
 }
 ::placeholder {
   color: white;
@@ -193,7 +204,7 @@ form {
   font-weight: bold;
 }
 .GoalContainer ::placeholder {
-  color: black;
+  color: rgb(32, 31, 31);
 }
 
 .btnSubmit {
@@ -202,8 +213,8 @@ form {
 .btnSubmit button {
   padding: 10px;
   background: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid black;
+  color: black;
   border-radius: 3%;
   width: 150px;
   letter-spacing: 1px;
@@ -214,7 +225,7 @@ form {
 button:hover,
 button:active,
 button:focus {
-  border: 3px double white;
+  border: 3px double black;
 }
 .textbox {
   border-bottom: 2px dashed white;
@@ -222,13 +233,13 @@ button:focus {
 /* textbox component finished */
 /* starting display component */
 
-.display_grid {
+/* .display_grid {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: nowrap;
   background-color: orange;
-}
+} */
 /* .display_grid .cell {
   min-width: 350px;
 } */

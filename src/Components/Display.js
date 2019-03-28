@@ -34,7 +34,7 @@ export class DisplayToday extends React.Component {
   }
   render() {
     return (
-      <div className="cell cellContainer">
+      <div className="cell ">
         <div className="boxx boxx1">
           <div className="alert">
             Today
@@ -46,15 +46,13 @@ export class DisplayToday extends React.Component {
           {this.props.items.map((item, index) => {
             return (
               <div key={index} className="listitems">
-                <div className="cell">
-                  <div className="cell content-title">
-                    <div
-                      className="minus deleteItem"
-                      onClick={() => this.removeThis(index)}
-                    >
-                      <i class="fas fa-times" />
-                    </div>
-                    &nbsp;{item} &nbsp;
+                <div className="cellContainer">
+                  <div className="content-title">&nbsp;{item} &nbsp;</div>
+                  <div
+                    className="minus deleteItem"
+                    onClick={() => this.removeThis(index)}
+                  >
+                    <i className="fas fa-times" />
                   </div>
                 </div>
               </div>
@@ -118,15 +116,13 @@ export class DisplayTomorrow extends React.Component {
           {this.props.items.map((item, index) => {
             return (
               <div key={index} className="listitems">
-                <div className="cell">
-                  <div className="content-title">
-                    <div
-                      className="minus deleteItem"
-                      onClick={() => this.removeThis(index)}
-                    >
-                      <i class="fas fa-times" />
-                    </div>
-                    &nbsp;{item}&nbsp;
+                <div className="cellContainer">
+                  <div className="content-title">&nbsp;{item}&nbsp;</div>
+                  <div
+                    className="minus deleteItem"
+                    onClick={() => this.removeThis(index)}
+                  >
+                    <i class="fas fa-times" />
                   </div>
                 </div>
               </div>
@@ -187,15 +183,13 @@ export class DisplayDayAfterTomorrow extends React.Component {
           {this.props.items.map((item, index) => {
             return (
               <div key={index} className="listitems">
-                <div className="cell">
-                  <div className="content-title">
-                    <div
-                      className="minus deleteItem"
-                      onClick={() => this.removeThis(index)}
-                    >
-                      <i class="fas fa-times" />
-                    </div>
-                    &nbsp;{item} &nbsp;
+                <div className="cellContainer">
+                  <div className="content-title">&nbsp;{item} &nbsp;</div>
+                  <div
+                    className="minus deleteItem"
+                    onClick={() => this.removeThis(index)}
+                  >
+                    <i class="fas fa-times" />
                   </div>
                 </div>
               </div>

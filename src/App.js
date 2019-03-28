@@ -169,6 +169,8 @@ class App extends React.Component {
           <br />
           <br />
           <div>
+            <button> show Setting</button>
+
             <SettingsPage
               hideSettingFunction={this.hideSettingFunction}
               presentName={this.state.username}
@@ -232,7 +234,7 @@ class Textbox extends React.Component {
         <form onSubmit={this.handleSubmit} className="formContainer">
           <div className="GoalContainer">
             <center className="GoalLabel">
-              <label>FOR</label>
+              <label>Choose When </label>
             </center>
             <select
               value={this.state.day}
@@ -247,7 +249,7 @@ class Textbox extends React.Component {
           </div>
           <div className="GoalContainer">
             <center className="GoalLabel">
-              <label>YOUR GOAL</label>
+              <label>What you need to do ?</label>
             </center>
             <input
               type="text"
@@ -261,7 +263,7 @@ class Textbox extends React.Component {
 
           <div className="btnSubmit">
             <button className="" id="iwilldothis">
-              I need to do this.
+              Submit{" "}
             </button>
           </div>
           <span>{this.state.err}</span>
