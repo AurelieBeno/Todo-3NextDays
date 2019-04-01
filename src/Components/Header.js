@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDom from "react-dom";
 
 export class Header extends Component {
   constructor(props) {
@@ -123,7 +122,7 @@ export class Header extends Component {
           </div>
           <div className="cell settings">
             <div className="setting_img" onClick={this.handleClickOnSetting}>
-              {/* <img src={require("./setting-png.png")} alt="setting" /> */}
+              <i className="fas fa-cog" />
             </div>
           </div>
         </div>

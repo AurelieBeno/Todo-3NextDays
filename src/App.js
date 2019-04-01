@@ -53,7 +53,7 @@ class App extends React.Component {
   }
 
   updateEntry(term, day) {
-    console.log(day);
+    // console.log(day);
     if (day === "Today") {
       if (this.state.Today.indexOf(term) > -1) {
         this.setState({

@@ -1,12 +1,16 @@
 import React from "react";
 import "./cssComponents/Display.css";
 
+// import { Link } from "react-dom";
+import Modal from "./Modal.js";
+
 export class DisplayToday extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       todayTimingLeftHrs: "",
-      todayTimingLeftMins: ""
+      todayTimingLeftMins: "",
+      isOpen: false
     };
   }
 
@@ -32,6 +36,13 @@ export class DisplayToday extends React.Component {
   removeThis(e) {
     this.props.deleteItem(e, "Today");
   }
+
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
+
   render() {
     return (
       <div className="cell ">
@@ -45,7 +56,7 @@ export class DisplayToday extends React.Component {
           </div>
           {this.props.items.map((item, index) => {
             return (
-              <div key={index} className="listitems">
+              <div key={index} className="listitems" onClick={this.toggleModal}>
                 <div className="cellContainer">
                   <div className="content-title">&nbsp;{item} &nbsp;</div>
                   <div
@@ -55,6 +66,10 @@ export class DisplayToday extends React.Component {
                     <i className="fas fa-times" />
                   </div>
                 </div>
+                <Modal show={this.state.isOpen} onClose={this.toggleModal}>
+                  Here's some content for the modal
+                  {this.props.items}
+                </Modal>
               </div>
             );
           })}
@@ -116,15 +131,22 @@ export class DisplayTomorrow extends React.Component {
           {this.props.items.map((item, index) => {
             return (
               <div key={index} className="listitems">
-                <div className="cellContainer">
-                  <div className="content-title">&nbsp;{item}&nbsp;</div>
-                  <div
-                    className="minus deleteItem"
-                    onClick={() => this.removeThis(index)}
-                  >
-                    <i class="fas fa-times" />
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                  onClick={this.toggleModal}
+                >
+                  <div className="cellContainer">
+                    <div className="content-title">&nbsp;{item}&nbsp;</div>
+                    <div
+                      className="minus deleteItem"
+                      onClick={() => this.removeThis(index)}
+                    >
+                      <i className="fas fa-times" />
+                    </div>
                   </div>
-                </div>
+                </button>
               </div>
             );
           })}
