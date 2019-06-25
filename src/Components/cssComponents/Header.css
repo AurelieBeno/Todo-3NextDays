@@ -1,0 +1,50 @@
+.header {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  letter-spacing: 1.2px;
+  padding-top: 5px;
+  padding-right: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "datetime datetime salutation settings" ". search__container search__container ." ". search__container search__container .";
+}
+
+.datetime {
+  grid-area: datetime;
+  margin-left: 5px;
+  line-height: 21px;
+}
+.marginLeft {
+  margin-left: 12px;
+}
+
+.salutation {
+  grid-area: salutation;
+  font-size: 20px;
+}
+
+.settings {
+  grid-area: settings;
+}
+
+.search__container {
+  grid-area: search__container;
+  grid-column: 2/4;
+  grid-row: 3/3;
+}
+.search_input {
+  background: white;
+  padding: 5px;
+  border-radius: 5px;
+  height: 48%;
+}
+.search_input ::placeholder {
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+.search__container form {
+  display: flex;
+  height: 100%;
+}

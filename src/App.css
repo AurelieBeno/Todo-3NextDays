@@ -7,44 +7,7 @@ body {
 li {
   list-style: none;
 }
-.header {
-  padding-top: 5px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.datetime {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-}
 
-.salutation {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  margin: 0 10px;
-}
-.name {
-  font-size: 17px;
-}
-
-.search span img {
-  width: 100%;
-  max-width: 50px;
-  min-width: 30px;
-  height: auto;
-}
-.search_input {
-  background: transparent;
-}
-.settings {
-  /* border-left: 1px dashed #808080; */
-  display: flex;
-  align-items: center;
-  /* background-color: orange; */
-}
 @-webkit-keyframes myOrbit {
   0% {
     -webkit-transform: rotate(0deg);
