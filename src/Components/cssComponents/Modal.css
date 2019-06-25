@@ -3,12 +3,12 @@
   top: 25%;
   left: 40%;
   right: 0;
-  background-color: rgba(245, 239, 239, 0.3);
-  padding: 50;
+  /* background-color: rgba(245, 239, 239, 0.3); */
+  /* padding: 50; */
 }
 
 .modalStyle {
-  background-color: orange;
+  background-color: rgba(141, 241, 156, 0.8);
   border-radius: 5;
   max-width: 400px;
   min-width: 300px;

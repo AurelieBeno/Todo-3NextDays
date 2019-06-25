@@ -1,15 +1,18 @@
 import React from "react";
 import "./App.css";
-
-// import "./hack.css";
-import {
-  DisplayToday,
-  DisplayTomorrow,
-  DisplayDayAfterTomorrow
-} from "./Components/Display";
-import { Header } from "./Components/Header";
+import { DisplayToday } from "./Components/displayDay/DisplayToday";
+import { DisplayTomorrow } from "./Components/displayDay/DisplayTomorrow";
+import { DisplayDayAfterTomorrow } from "./Components/displayDay/DisplayDayAfterTomorrow";
+// import {
+//   DisplayToday,
+//   DisplayTomorrow,
+//   DisplayDayAfterTomorrow
+// } from "./Components/Display";
+// import { Header } from "./Components/Header";
 import { SettingsPage } from "./Components/SettingsPage";
 import SimpleSotrage from "react-simple-storage";
+import Textbox from "./Components/Texbox";
+import Header from "./Components/Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -25,9 +28,13 @@ class App extends React.Component {
     };
     this.updateEntry = this.updateEntry.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
-    this.showSettingFunction = this.showSettingFunction.bind(this);
+    this.showSettingFunction = this.showSettingFunction.bind(
+      this
+    );
     this.setUserName = this.setUserName.bind(this);
-    this.hideSettingFunction = this.hideSettingFunction.bind(this);
+    this.hideSettingFunction = this.hideSettingFunction.bind(
+      this
+    );
   }
 
   setUserName(nam) {
@@ -77,13 +84,18 @@ class App extends React.Component {
         });
       }
     } else if (day === "Day_After_Tomorrow") {
-      if (this.state.Day_After_Tomorrow.indexOf(term) > -1) {
+      if (
+        this.state.Day_After_Tomorrow.indexOf(term) > -1
+      ) {
         this.setState({
           err: "this is already present"
         });
       } else {
         this.setState({
-          Day_After_Tomorrow: [...this.state.Day_After_Tomorrow, term],
+          Day_After_Tomorrow: [
+            ...this.state.Day_After_Tomorrow,
+            term
+          ],
           err: ""
         });
       }
@@ -92,37 +104,45 @@ class App extends React.Component {
 
   deleteItem(index, day) {
     if (day === "Today") {
-      let filterList = this.state.Today.filter((elem, i) => {
-        if (i === index) {
-          return false;
+      let filterList = this.state.Today.filter(
+        (elem, i) => {
+          if (i === index) {
+            return false;
+          }
+          return true;
         }
-        return true;
-      });
+      );
       this.setState({
         Today: filterList
       });
     } else if (day === "Tomorrow") {
-      let filterList = this.state.Tomorrow.filter((elem, i) => {
-        if (i === index) {
-          return false;
+      let filterList = this.state.Tomorrow.filter(
+        (elem, i) => {
+          if (i === index) {
+            return false;
+          }
+          return true;
         }
-        return true;
-      });
+      );
       this.setState({
         Tomorrow: filterList
       });
     } else if (day === "Day_After_Tomorrow") {
-      let filterList = this.state.Day_After_Tomorrow.filter((elem, i) => {
-        if (i === index) {
-          return false;
+      let filterList = this.state.Day_After_Tomorrow.filter(
+        (elem, i) => {
+          if (i === index) {
+            return false;
+          }
+          return true;
         }
-        return true;
-      });
+      );
       this.setState({
         Day_After_Tomorrow: filterList
       });
     } else {
-      console.log("something went wrong while removing item...");
+      console.log(
+        "something went wrong while removing item..."
+      );
     }
   }
 
@@ -140,7 +160,7 @@ class App extends React.Component {
           <span>{this.state.err}</span>
           <br />
           <br />
-          <div className="display_grid">
+          <div className='wrapper'>
             <DisplayToday
               items={this.state.Today}
               deleteItem={this.deleteItem}
@@ -180,96 +200,10 @@ class App extends React.Component {
         </div>
       );
     } else {
-      return <div>some thing is wrong...contact developer!</div>;
+      return (
+        <div>some thing is wrong...contact developer!</div>
+      );
     }
-  }
-}
-
-class Textbox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: "",
-      err: "",
-      day: "Today"
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      term: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.term.length > 1) {
-      this.setState({
-        err: ""
-      });
-      this.props.updateEntry(this.state.term, this.state.day);
-      this.setState({
-        term: ""
-      });
-    } else {
-      this.setState({
-        err: "please type something..."
-      });
-    }
-  }
-
-  handleSelect(event) {
-    this.setState({
-      day: event.target.value
-    });
-    console.log(event.target.value);
-  }
-
-  render() {
-    return (
-      <div className="Container">
-        <form onSubmit={this.handleSubmit} className="formContainer">
-          <div className="GoalContainer">
-            <center className="GoalLabel">
-              <label>Choose When </label>
-            </center>
-            <select
-              value={this.state.day}
-              id="day"
-              onChange={this.handleSelect}
-              className="GoalSelect"
-            >
-              <option value="Today">Today</option>
-              <option value="Tomorrow">Tomorrow</option>
-              <option value="Day_After_Tomorrow">Day after Tomorrow</option>
-            </select>
-          </div>
-          <div className="GoalContainer">
-            <center className="GoalLabel">
-              <label>What you need to do ?</label>
-            </center>
-            <input
-              type="text"
-              id="aim"
-              value={this.state.term}
-              placeholder=" Type here your goal"
-              onChange={this.handleChange}
-              className="GoalInput"
-            />
-          </div>
-
-          <div className="btnSubmit">
-            <button className="" id="iwilldothis">
-              Submit{" "}
-            </button>
-          </div>
-          <span>{this.state.err}</span>
-        </form>
-      </div>
-    );
   }
 }
 

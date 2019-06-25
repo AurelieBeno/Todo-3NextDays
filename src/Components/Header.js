@@ -11,7 +11,9 @@ export class Header extends Component {
       keyword: ""
     };
 
-    this.handleClickOnSetting = this.handleClickOnSetting.bind(this);
+    this.handleClickOnSetting = this.handleClickOnSetting.bind(
+      this
+    );
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -88,41 +90,47 @@ export class Header extends Component {
 
   render() {
     return (
-      <div className="header">
-        <div className="cell datetime">
-          <div className="date_line">
+      <div className='header'>
+        <div className=' datetime'>
+          <div className='date_line'>
             &nbsp;{this.state.d}
-            <span className="dull2">{this.state.day}</span>
+            <span className='dull2'>{this.state.day}</span>
           </div>
-          <div className="time_line">
+          <div className='time_line'>
             &nbsp;{this.state.timeRightNow}
-            <span className="dull2">{this.state.behar}</span>
+            <span className='dull2'>
+              {this.state.behar}
+            </span>
           </div>
         </div>
-        <div className="salutation cell">
-          <div className="name">
-            <span>{this.props.input}</span>
+        <div className='salutation'>
+          <div className='name'>
+            <span>Hi {this.props.nam}</span>
           </div>
-          <div className="cell">
-            <form onSubmit={() => window.open(this.state.keyword, "_blank")}>
-              <div className="search">
-                {/* <span>
-                  <img src={require("./google50x50.png")} alt="" />
-                </span> */}
+          <div className=''>
+            <form
+              onSubmit={() =>
+                window.open(this.state.keyword, "_blank")
+              }
+            >
+              <div className='search'>
                 <input
-                  type="text"
-                  id="search"
-                  name="search"
+                  type='text'
+                  id='search'
+                  name='search'
                   onChange={this.handleSearch}
-                  className="search_input"
-                  placeholder="Type to search"
+                  className='search_input'
+                  placeholder='Type to search'
                 />
               </div>
             </form>
           </div>
-          <div className="cell settings">
-            <div className="setting_img" onClick={this.handleClickOnSetting}>
-              <i className="fas fa-cog" />
+          <div className=' settings'>
+            <div
+              className='setting_img'
+              onClick={this.handleClickOnSetting}
+            >
+              <i className='fas fa-cog' />
             </div>
           </div>
         </div>

@@ -1,0 +1,34 @@
+.settings_topbar {
+  background-color: blue;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 16px;
+  flex-direction: column;
+  height: 68px;
+}
+
+.maker_info {
+  background-color: orange;
+  text-align: center;
+  font-size: 1.01rem;
+}
+
+.maker_info a {
+  color: white;
+  cursor: pointer;
+}
+.formadjust {
+  align-items: center;
+  background-color: red;
+  height: 92px;
+  justify-content: space-evenly;
+}
+.form-group button {
+  padding: 8px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  border-radius: 7px;
+  background-color: white;
+}
