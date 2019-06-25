@@ -50,7 +50,7 @@ class Textbox extends React.Component {
 
   render() {
     return (
-      <div className='Container'>
+      <div className='texbox__container'>
         <form
           onSubmit={this.handleSubmit}
           className='formContainer'

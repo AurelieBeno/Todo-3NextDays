@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../Components/cssComponents/Header.css";
 
 export class Header extends Component {
   constructor(props) {
@@ -7,7 +8,6 @@ export class Header extends Component {
       TimeRightNow: "",
       d: "",
       day: "",
-      bahar: "",
       keyword: ""
     };
 
@@ -25,29 +25,14 @@ export class Header extends Component {
 
       var hours = currentTime.getHours();
       var minutes = currentTime.getMinutes();
-      var outside = "";
 
-      if (hours < 5) {
-        outside = "GET SOME SLEEP !";
-      } else if (hours < 12) {
-        outside = "MORNING";
-      } else if (hours < 16) {
-        outside = "NOON";
-      } else if (hours < 20) {
-        outside = "EVENING";
-      } else if (hours <= 23) {
-        outside = "NIGHT";
-      } else {
-        outside = "";
-      }
       if (minutes < 10) {
         minutes = "0" + minutes;
       }
 
       var v = hours + " : " + minutes;
       this.setState({
-        timeRightNow: v,
-        bahar: outside
+        timeRightNow: v
       });
     }, 1000);
 
@@ -72,7 +57,7 @@ export class Header extends Component {
       month = "0" + month;
     }
     var d = day + "-" + month + "-" + year;
-    this.setState({ "d ": d, day: " " + days[din] });
+    this.setState({ d, day: " " + days[din] });
   }
 
   handleClickOnSetting(event) {
@@ -90,51 +75,45 @@ export class Header extends Component {
 
   render() {
     return (
-      <div className='header'>
+      <section className='header'>
         <div className=' datetime'>
           <div className='date_line'>
-            &nbsp;{this.state.d}
-            <span className='dull2'>{this.state.day}</span>
+            <span>{this.state.day}</span>
           </div>
-          <div className='time_line'>
-            &nbsp;{this.state.timeRightNow}
-            <span className='dull2'>
-              {this.state.behar}
-            </span>
+          <div className='date_line marginLeft'>
+            <span>{this.state.timeRightNow}</span>
           </div>
         </div>
         <div className='salutation'>
           <div className='name'>
             <span>Hi {this.props.nam}</span>
           </div>
-          <div className=''>
-            <form
-              onSubmit={() =>
-                window.open(this.state.keyword, "_blank")
-              }
-            >
-              <div className='search'>
-                <input
-                  type='text'
-                  id='search'
-                  name='search'
-                  onChange={this.handleSearch}
-                  className='search_input'
-                  placeholder='Type to search'
-                />
-              </div>
-            </form>
-          </div>
-          <div className=' settings'>
-            <div
-              className='setting_img'
-              onClick={this.handleClickOnSetting}
-            >
-              <i className='fas fa-cog' />
-            </div>
+        </div>
+        <div className=' settings'>
+          <div
+            className='setting_img'
+            onClick={this.handleClickOnSetting}
+          >
+            <i className='fas fa-cog' />
           </div>
         </div>
-      </div>
+        <div className='search__container'>
+          <form
+            onSubmit={() =>
+              window.open(this.state.keyword, "_blank")
+            }
+          >
+            <input
+              type='text'
+              id='search'
+              name='search'
+              onChange={this.handleSearch}
+              className='search_input'
+              placeholder='Type to search'
+            />
+          </form>
+        </div>
+      </section>
     );
   }
 }

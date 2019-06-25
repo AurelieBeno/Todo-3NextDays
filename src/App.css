@@ -7,6 +7,9 @@ body {
 li {
   list-style: none;
 }
+ul {
+  padding-left: 0;
+}
 
 @-webkit-keyframes myOrbit {
   0% {

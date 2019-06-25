@@ -1,21 +1,39 @@
-.Container {
+.texbox__container {
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(160px, 1fr));
-  /* background-color: blue; */
+  background-color: rgb(214, 217, 221);
   justify-content: center;
-  grid-template-columns: 1fr;
 }
 .formContainer {
   display: grid;
-  justify-content: center;
-  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   /* background-color: red; */
   align-items: center;
   justify-items: center;
 }
+
 .GoalContainer {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
+  grid-row-gap: 11px;
   width: 100%;
+  padding-top: 5px;
+}
+.GoalContainer input,
+.GoalSelect {
+  outline: none;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid #17394d;
+  font-weight: bold;
+  letter-spacing: 1.7px;
+  color: #17394d;
+}
+.GoalLabel {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #17394d;
+  letter-spacing: 1.9px;
 }
