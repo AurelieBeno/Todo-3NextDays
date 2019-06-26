@@ -1,144 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import SimpleSotrage from "react-simple-storage";
 import "./App.css";
 import { DisplayToday } from "./Components/displayDay/DisplayToday";
 import { DisplayTomorrow } from "./Components/displayDay/DisplayTomorrow";
 import { DisplayDayAfterTomorrow } from "./Components/displayDay/DisplayDayAfterTomorrow";
-// import {
-//   DisplayToday,
-//   DisplayTomorrow,
-//   DisplayDayAfterTomorrow
-// } from "./Components/Display";
-// import { Header } from "./Components/Header";
 import { SettingsPage } from "./Components/SettingsPage";
-import SimpleSotrage from "react-simple-storage";
 import Textbox from "./Components/Texbox";
 import Header from "./Components/Header";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Today: [],
-      Tomorrow: [],
-      Day_After_Tomorrow: [],
-      aray: [],
-      err: "",
-      showSetting: "False",
-      username: "Hi Someone!"
-    };
-    this.updateEntry = this.updateEntry.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.showSettingFunction = this.showSettingFunction.bind(
-      this
-    );
-    this.setUserName = this.setUserName.bind(this);
-    this.hideSettingFunction = this.hideSettingFunction.bind(
-      this
-    );
-  }
+const App = props => {
+  const [today, setToday] = useState([]);
+  const [tomorrow, setTomorrow] = useState([]);
+  const [dayAfter, setDayAfter] = useState([]);
+  // const [aray, setAray] = useState([]);
+  const [err, setErr] = useState("");
+  const [showSetting, setShowSetting] = useState(false);
+  const [username, setUserName] = useState("Hi someone !");
 
-  setUserName(nam) {
-    this.setState({
-      username: nam
-    });
-  }
-
-  showSettingFunction(parameter) {
-    if (parameter === "True") {
-      this.setState({
-        showSetting: "True"
-      });
-    }
-  }
-
-  hideSettingFunction(parameter) {
-    if (parameter === "False") {
-      this.setState({
-        showSetting: "False"
-      });
-    }
-  }
-
-  updateEntry(term, day) {
-    // console.log(day);
+  function deleteItem(index, day) {
     if (day === "Today") {
-      if (this.state.Today.indexOf(term) > -1) {
-        this.setState({
-          err: "this is already present"
-        });
-      } else {
-        this.setState({
-          Today: [...this.state.Today, term],
-          err: ""
-        });
-      }
+      let filterList = today.filter((elem, i) => {
+        if (i === index) {
+          return false;
+        }
+        return true;
+      });
+      setToday(filterList);
     } else if (day === "Tomorrow") {
-      if (this.state.Tomorrow.indexOf(term) > -1) {
-        this.setState({
-          err: "this is already present"
-        });
-      } else {
-        this.setState({
-          Tomorrow: [...this.state.Tomorrow, term],
-          err: ""
-        });
-      }
+      let filterList = tomorrow.filter((elem, i) => {
+        if (i === index) {
+          return false;
+        }
+        return true;
+      });
+      setTomorrow(filterList);
     } else if (day === "Day_After_Tomorrow") {
-      if (
-        this.state.Day_After_Tomorrow.indexOf(term) > -1
-      ) {
-        this.setState({
-          err: "this is already present"
-        });
-      } else {
-        this.setState({
-          Day_After_Tomorrow: [
-            ...this.state.Day_After_Tomorrow,
-            term
-          ],
-          err: ""
-        });
-      }
-    }
-  }
-
-  deleteItem(index, day) {
-    if (day === "Today") {
-      let filterList = this.state.Today.filter(
-        (elem, i) => {
-          if (i === index) {
-            return false;
-          }
-          return true;
+      let filterList = dayAfter.filter((elem, i) => {
+        if (i === index) {
+          return false;
         }
-      );
-      this.setState({
-        Today: filterList
+        return true;
       });
-    } else if (day === "Tomorrow") {
-      let filterList = this.state.Tomorrow.filter(
-        (elem, i) => {
-          if (i === index) {
-            return false;
-          }
-          return true;
-        }
-      );
-      this.setState({
-        Tomorrow: filterList
-      });
-    } else if (day === "Day_After_Tomorrow") {
-      let filterList = this.state.Day_After_Tomorrow.filter(
-        (elem, i) => {
-          if (i === index) {
-            return false;
-          }
-          return true;
-        }
-      );
-      this.setState({
-        Day_After_Tomorrow: filterList
-      });
+      setDayAfter(filterList);
     } else {
       console.log(
         "something went wrong while removing item..."
@@ -146,65 +49,81 @@ class App extends React.Component {
     }
   }
 
-  render() {
-    if (this.state.showSetting === "False") {
-      return (
-        <div>
-          <SimpleSotrage parent={this} />
-          <Header
-            showSettingFunction={this.showSettingFunction}
-            nam={this.state.username}
-          />
-          <br />
-          <Textbox updateEntry={this.updateEntry} />
-          <span>{this.state.err}</span>
-          <br />
-          <br />
-          <div className='wrapper'>
-            <DisplayToday
-              items={this.state.Today}
-              deleteItem={this.deleteItem}
-            />
-            <DisplayTomorrow
-              items={this.state.Tomorrow}
-              deleteItem={this.deleteItem}
-            />
-            <DisplayDayAfterTomorrow
-              items={this.state.Day_After_Tomorrow}
-              deleteItem={this.deleteItem}
-            />
-          </div>
-        </div>
-      );
-    } else if (this.state.showSetting === "True") {
-      return (
-        <div>
-          <SimpleSotrage parent={this} />
-          <Header
-            showSettingFunction={this.showSettingFunction}
-            nam={this.state.username}
-          />
-          <br />
-          <span>{this.state.err}</span>
-          <br />
-          <br />
-          <div>
-            <button> show Setting</button>
-
-            <SettingsPage
-              hideSettingFunction={this.hideSettingFunction}
-              presentName={this.state.username}
-              setUserName={this.setUserName}
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div>some thing is wrong...contact developer!</div>
-      );
+  function updateEntry(term, day) {
+    if (day === "Today") {
+      if (today.indexOf(term) > -1) {
+        setErr("already taken");
+      } else {
+        setToday([...today, term]);
+      }
+    } else if (day === "Tomorrow") {
+      if (tomorrow.indexOf(term) > -1) {
+        setErr("This is already present");
+      } else {
+        setTomorrow([...tomorrow, term]);
+        setErr("");
+      }
+    } else if (day === "Day_After_Tomorrow") {
+      if (dayAfter.indexOf(term) > -1) {
+        setErr("This is already present");
+      } else {
+        setDayAfter([...dayAfter, term]);
+        setErr("");
+      }
     }
   }
-}
+
+  function hideSetting(parameter) {
+    if (parameter === "false") {
+      setShowSetting(false);
+    }
+  }
+  let content = (
+    <React.Fragment>
+      <div>
+        <SimpleSotrage parent={this} />
+        <Header
+          showSettingFunction={showSetting}
+          name={username}
+        />
+        <br />
+        <Textbox updateEntry={updateEntry} />
+        <span>{err}</span>
+        <br />
+        <br />
+        <div className='wrapper'>
+          <DisplayToday
+            items={today}
+            deleteItem={deleteItem}
+          />
+          <DisplayTomorrow
+            items={tomorrow}
+            deleteItem={deleteItem}
+          />
+          <DisplayDayAfterTomorrow
+            items={dayAfter}
+            deleteItem={deleteItem}
+          />
+        </div>
+        {/* {showSetting && (
+          <div>
+            <SimpleSotrage parent={this} />
+            <Header
+              showSettingFunction={showSetting}
+              name={username}
+            />
+            <span>{err}</span>
+            <button> show Setting</button>
+            <SettingsPage
+              hideSettingFunction={hideSetting}
+              parentName={username}
+            />
+          </div> */}
+        )}
+      </div>
+    </React.Fragment>
+  );
+  return content;
+};
 
 export default App;
