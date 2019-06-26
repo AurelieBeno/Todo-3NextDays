@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SimpleSotrage from "react-simple-storage";
+
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import { DisplayToday } from "./Components/displayDay/DisplayToday";
 import { DisplayTomorrow } from "./Components/displayDay/DisplayTomorrow";
 import { DisplayDayAfterTomorrow } from "./Components/displayDay/DisplayDayAfterTomorrow";
-import { SettingsPage } from "./Components/SettingsPage";
 import Textbox from "./Components/Texbox";
 import Header from "./Components/Header";
+import SettingsPage from "./Components/SettingsPage";
 
 const App = props => {
   const [today, setToday] = useState([]);
   const [tomorrow, setTomorrow] = useState([]);
   const [dayAfter, setDayAfter] = useState([]);
-  // const [aray, setAray] = useState([]);
   const [err, setErr] = useState("");
-  const [showSetting, setShowSetting] = useState(false);
-  const [username, setUserName] = useState("Hi someone !");
+  // const [showSetting, setShowSetting] = useState(false);
+  const [name, setName] = useState("");
 
   function deleteItem(index, day) {
     if (day === "Today") {
@@ -72,56 +73,62 @@ const App = props => {
       }
     }
   }
-
-  function hideSetting(parameter) {
-    if (parameter === "false") {
-      setShowSetting(false);
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    setName(e);
   }
+  useEffect(() => {
+    console.log("coucou useEffect name", name);
+    setName(name);
+  }, [name]);
+
+  // function hideSetting(parameter) {
+  //   if (parameter === "false") {
+  //     setShowSetting(false);
+  //   }
+  // }
+
   let content = (
-    <React.Fragment>
-      <div>
-        <SimpleSotrage parent={this} />
-        <Header
-          showSettingFunction={showSetting}
-          name={username}
+    <div>
+      <SimpleSotrage parent={this} />
+      <Header
+      // showSettingFunction={showSetting}
+      // name={username}
+      />
+      <br />
+      <Textbox updateEntry={updateEntry} />
+      <span>{err}</span>
+      <br />
+      <br />
+      <div className='wrapper'>
+        <DisplayToday
+          items={today}
+          deleteItem={deleteItem}
         />
-        <br />
-        <Textbox updateEntry={updateEntry} />
-        <span>{err}</span>
-        <br />
-        <br />
-        <div className='wrapper'>
-          <DisplayToday
-            items={today}
-            deleteItem={deleteItem}
-          />
-          <DisplayTomorrow
-            items={tomorrow}
-            deleteItem={deleteItem}
-          />
-          <DisplayDayAfterTomorrow
-            items={dayAfter}
-            deleteItem={deleteItem}
-          />
-        </div>
-        {/* {showSetting && (
-          <div>
-            <SimpleSotrage parent={this} />
-            <Header
-              showSettingFunction={showSetting}
-              name={username}
-            />
-            <span>{err}</span>
-            <button> show Setting</button>
-            <SettingsPage
-              hideSettingFunction={hideSetting}
-              parentName={username}
-            />
-          </div> */}
-        )}
+        <DisplayTomorrow
+          items={tomorrow}
+          deleteItem={deleteItem}
+        />
+        <DisplayDayAfterTomorrow
+          items={dayAfter}
+          deleteItem={deleteItem}
+        />
       </div>
-    </React.Fragment>
+      <Switch>
+        <Route
+          path='/settings'
+          render={() => {
+            return (
+              <SettingsPage
+                value={name}
+                onSubmit={e => handleSubmit(e)}
+                onChange={e => setName(e.target.value)}
+              />
+            );
+          }}
+        />
+      </Switch>
+    </div>
   );
   return content;
 };
