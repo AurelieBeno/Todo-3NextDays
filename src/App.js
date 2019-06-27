@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SimpleSotrage from "react-simple-storage";
 
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -15,7 +14,6 @@ const App = props => {
   const [tomorrow, setTomorrow] = useState([]);
   const [dayAfter, setDayAfter] = useState([]);
   const [err, setErr] = useState("");
-  // const [showSetting, setShowSetting] = useState(false);
   const [name, setName] = useState("");
 
   function deleteItem(index, day) {
@@ -74,27 +72,13 @@ const App = props => {
     }
   }
   function handleSubmit(e) {
-    e.preventDefault();
-    setName(e);
-  }
-  useEffect(() => {
-    console.log("coucou useEffect name", name);
+    console.log("hello handleSubmit");
     setName(name);
-  }, [name]);
+  }
 
-  // function hideSetting(parameter) {
-  //   if (parameter === "false") {
-  //     setShowSetting(false);
-  //   }
-  // }
-
-  let content = (
+  return (
     <div>
-      <SimpleSotrage parent={this} />
-      <Header
-      // showSettingFunction={showSetting}
-      // name={username}
-      />
+      <Header name={name} />
       <br />
       <Textbox updateEntry={updateEntry} />
       <span>{err}</span>
@@ -130,7 +114,6 @@ const App = props => {
       </Switch>
     </div>
   );
-  return content;
 };
 
 export default App;

@@ -1,100 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./cssComponents/Textbox.css";
 
-class Textbox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      term: "",
-      err: "",
-      day: "Today"
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-  }
+const Textbox = props => {
+  const [term, setTerm] = useState("");
+  const [err, setErr] = useState("");
+  const [day, setDay] = useState("Today");
 
-  handleChange(e) {
-    this.setState({
-      term: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    if (this.state.term.length > 1) {
-      this.setState({
-        err: ""
-      });
-      this.props.updateEntry(
-        this.state.term,
-        this.state.day
-      );
-      this.setState({
-        term: ""
-      });
+    if (term.length > 1) {
+      setErr("");
+      props.updateEntry(term, day);
+      setTerm("");
     } else {
-      this.setState({
-        err: "please type something..."
-      });
+      setErr("Please enter something");
     }
   }
 
-  handleSelect(event) {
-    this.setState({
-      day: event.target.value
-    });
-    console.log(event.target.value);
-  }
+  return (
+    <div className='texbox__container'>
+      <form
+        onSubmit={handleSubmit}
+        className='formContainer'
+      >
+        <div className='GoalContainer'>
+          <center className='GoalLabel'>
+            <label>Choose When </label>
+          </center>
+          <select
+            value={day}
+            id='day'
+            onChange={e => setDay(e.target.value)}
+            className='GoalSelect'
+          >
+            <option value='Today'>Today</option>
+            <option value='Tomorrow'>Tomorrow</option>
+            <option value='Day_After_Tomorrow'>
+              Day after Tomorrow
+            </option>
+          </select>
+        </div>
+        <div className='GoalContainer'>
+          <center className='GoalLabel'>
+            <label>What you need to do ?</label>
+          </center>
+          <input
+            type='text'
+            id='aim'
+            value={term}
+            placeholder=' Type here your goal'
+            onChange={e => setTerm(e.target.value)}
+            className='GoalInput'
+          />
+        </div>
 
-  render() {
-    return (
-      <div className='texbox__container'>
-        <form
-          onSubmit={this.handleSubmit}
-          className='formContainer'
-        >
-          <div className='GoalContainer'>
-            <center className='GoalLabel'>
-              <label>Choose When </label>
-            </center>
-            <select
-              value={this.state.day}
-              id='day'
-              onChange={this.handleSelect}
-              className='GoalSelect'
-            >
-              <option value='Today'>Today</option>
-              <option value='Tomorrow'>Tomorrow</option>
-              <option value='Day_After_Tomorrow'>
-                Day after Tomorrow
-              </option>
-            </select>
-          </div>
-          <div className='GoalContainer'>
-            <center className='GoalLabel'>
-              <label>What you need to do ?</label>
-            </center>
-            <input
-              type='text'
-              id='aim'
-              value={this.state.term}
-              placeholder=' Type here your goal'
-              onChange={this.handleChange}
-              className='GoalInput'
-            />
-          </div>
+        <div className='btnSubmit'>
+          <button className='' id='iwilldothis'>
+            Submit{" "}
+          </button>
+        </div>
+        <span>{err}</span>
+      </form>
+    </div>
+  );
+};
 
-          <div className='btnSubmit'>
-            <button className='' id='iwilldothis'>
-              Submit{" "}
-            </button>
-          </div>
-          <span>{this.state.err}</span>
-        </form>
-      </div>
-    );
-  }
-}
 export default Textbox;
