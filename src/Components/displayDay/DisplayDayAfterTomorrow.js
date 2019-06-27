@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../cssComponents/displayToday.css";
 
-export class DisplayDayAfterTomorrow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dayAfterTomorrowTimingLeft: "",
-      dayAfterTomorrowMinLeft: ""
-    };
-  }
-  componentDidMount() {
+function DisplayDayAfterTomorrow(props) {
+  const [
+    dayAfterTomorrowTimingLeft,
+    setTimingLeft
+  ] = useState("");
+  const [
+    dayAfterTomorrowMinLeft,
+    setTimingLeftMin
+  ] = useState("");
+
+  useEffect(() => {
     var currentTime = new Date();
     setInterval(() => {
       var minuteSec = currentTime.getMinutes() * 60;
@@ -21,48 +23,43 @@ export class DisplayDayAfterTomorrow extends React.Component {
       );
       var dayAfterTomorrowMinLeft =
         60 - currentTime.getMinutes();
-      this.setState({
-        dayAfterTomorrowMinLeft: dayAfterTomorrowMinLeft
-      });
-      this.setState({
-        dayAfterTomorrowTimingLeft: dayAfterTomorrowTimingLeft,
-        dayAfterTomorrowMinLeft: dayAfterTomorrowMinLeft
-      });
+      setTimingLeft(dayAfterTomorrowTimingLeft);
+      setTimingLeftMin(dayAfterTomorrowMinLeft);
     }, 1000);
+  });
+  function removeThis(e) {
+    props.deleteItem(e, "Day_After_Tomorrow");
   }
-  removeThis(e) {
-    this.props.deleteItem(e, "Day_After_Tomorrow");
-  }
-  render() {
-    return (
-      <div className='column__list'>
-        <div className='column__item'>
-          <div className='column__title--wrapper'>
-            <h2>After Tomorrow </h2>
-            <span className='time-left'>
-              {this.state.dayAfterTomorrowTimingLeft} hr{" "}
-              {this.state.dayAfterTomorrowMinLeft} min
-            </span>
-          </div>
-          {this.props.items.map((item, index) => {
-            return (
-              <ul key={index} className='card__list'>
-                <li className='card__item'>
-                  <div className='card__title'>
-                    &nbsp;{item} &nbsp;
-                  </div>
-                  {/* <ol
-                    className='minus deleteItem'
-                    onClick={() => this.removeThis(index)}
-                  >
-                    <i class='fas fa-times' />
-                  </ol> */}
-                </li>
-              </ul>
-            );
-          })}
+
+  return (
+    <div className='column__list'>
+      <div className='column__item'>
+        <div className='column__title--wrapper'>
+          <h2>After Tomorrow </h2>
+          <span className='time-left'>
+            {dayAfterTomorrowTimingLeft} hr{" "}
+            {dayAfterTomorrowMinLeft} min
+          </span>
         </div>
+        {props.items.map((item, index) => {
+          return (
+            <ul key={index} className='card__list'>
+              <li className='card__item'>
+                <div className='card__title'>
+                  &nbsp;{item} &nbsp;
+                </div>
+                <div
+                  className='minus deleteItem'
+                  onClick={() => this.removeThis(index)}
+                >
+                  <i className='fas fa-times' />
+                </div>
+              </li>
+            </ul>
+          );
+        })}
       </div>
-    );
-  }
+    </div>
+  );
 }
+export default DisplayDayAfterTomorrow;

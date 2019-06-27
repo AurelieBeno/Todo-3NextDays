@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-import SimpleSotrage from "react-simple-storage";
 import moment from "moment";
 import "../Components/cssComponents/Header.css";
 
@@ -12,6 +10,10 @@ const Header = props => {
   const [keyword, setKeyword] = useState("");
   const [isClick, setIsClick] = useState(false);
 
+  function toggleSetting() {
+    setIsClick(!isClick);
+  }
+
   useEffect(() => {
     setCurrentDate(
       moment(new Date()).format("dddd DD MMM")
@@ -21,10 +23,6 @@ const Header = props => {
       setTimeRightNow(minutes);
     }, 1000);
   });
-
-  // const handleClickOnSetting = event => {
-  //   setIsClick(true);
-  // };
 
   const handleSearch = e => {
     const f = e.target.value;
@@ -48,11 +46,11 @@ const Header = props => {
         </div>
       </div>
       <div className=' settings'>
-        <div
-          className='setting_img'
-          // onClick={e => handleClickOnSetting(e)}
-        >
-          <Link to='/settings'>
+        <div className='setting_img'>
+          <Link
+            to='/settings'
+            onClick={() => toggleSetting()}
+          >
             <i className='fas fa-cog' />
           </Link>
         </div>
@@ -71,16 +69,6 @@ const Header = props => {
           />
         </form>
       </div>
-      {isClick && (
-        <div>
-          <SimpleSotrage parent={this} />
-
-          {/* <SettingsPage
-            value={name}
-            onChange={handleSubmit}
-          /> */}
-        </div>
-      )}
     </section>
   );
 };

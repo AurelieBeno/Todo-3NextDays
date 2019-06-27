@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import { DisplayToday } from "./Components/displayDay/DisplayToday";
-import { DisplayTomorrow } from "./Components/displayDay/DisplayTomorrow";
-import { DisplayDayAfterTomorrow } from "./Components/displayDay/DisplayDayAfterTomorrow";
+import DisplayToday from "./Components/displayDay/DisplayToday";
+import DisplayTomorrow from "./Components/displayDay/DisplayTomorrow";
+import DisplayDayAfterTomorrow from "./Components/displayDay/DisplayDayAfterTomorrow";
 import Textbox from "./Components/Texbox";
 import Header from "./Components/Header";
 import SettingsPage from "./Components/SettingsPage";
